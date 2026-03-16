@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capybara-FI</title>
+    <link rel="icon" href="images/icone.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="project-title">
+                <img src="/images/capivara.png" alt="Logo" class="capy-logo">
+                <span>Capybara-FI</span>
+                <img src="/images/capivara.png" alt="Logo" class="capy-logo logo-invertida">
+            </h1>
+            <p style="color: #6B7280; margin-top: 0; margin-bottom: 20px;">Monetização x402 na Monad</p>
+            
+            <div class="header-actions">
+                <button id="connectBtn" class="btn-primary">Conectar Carteira</button>
+                <p id="walletAddress" class="wallet-text"></p>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button id="navFeed" class="nav-btn active">📜 Explorar Feed</button>
+            <button id="navCreate" class="nav-btn">✍️ Criar Relatório</button>
+        </nav>
+
+        <div id="feedMode" class="card" style="display: none;">
+            <div class="card-header" style="margin-bottom: 15px;">
+                <h3>Últimos Relatórios Protegidos</h3>
+            </div>
+            <div id="feedList">
+                <div class="empty-feed">Carregando rede... ⏳</div>
+            </div>
+        </div>
+
+        <div id="creatorMode" class="card" style="display: none;">
+            <div class="card-header">
+                <h3>Vender Insight Confidencial</h3>
+            </div>
+            <p style="font-size: 14px; color: #6B7280; margin-top: 5px; margin-bottom: 15px;">Insira os dados da vulnerabilidade ou relatório. A Pipeline de IA vai verificar a veracidade antes de gerar o link pagável.</p>
+            
+            <input type="text" id="reportTitleInput" placeholder="Título do Relatório (Ex: Zero-Day no Cloud Run)" style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #D1D5DB; box-sizing: border-box; font-family: inherit;">
+            
+            <textarea id="secretInput" rows="5" placeholder="Descreva a vulnerabilidade, IPs, provas de conceito (PoC)..."></textarea>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9CA3AF; margin-bottom: 15px;">
+                <span id="charCount">0 caracteres</span>
+                <button id="prefillBtn" style="background: none; border: none; color: #D97706; padding: 0; width: auto; font-size: 12px; margin: 0;">Preencher Exemplo ⚡</button>
+            </div>
+            
+            <button id="generateLinkBtn" class="btn-action">Criar Link Pagável (0.01 MON)</button>
+            
+            <div id="verificationPanel" style="display: none; background: #F9FAFB; padding: 15px; border-radius: 8px; border: 1px solid #E5E7EB; margin-top: 15px;">
+                <h4 style="margin-top: 0; color: #374151; font-size: 14px; margin-bottom: 10px;">🛡️ Pipeline de Consenso (Verificação IA)</h4>
+                <ul style="list-style-type: none; padding: 0; margin: 0; font-size: 13px;">
+                    <li id="step1" class="step-pending">⏳ Agente 1: Checando Fatos...</li>
+                    <li id="step2" class="step-pending">⏳ Agente 2: Auditoria de Cybersec...</li>
+                    <li id="step3" class="step-pending">⏳ Agente 3: Juiz de Consenso...</li>
+                </ul>
+            </div>
+
+            <div id="linkResult" style="display: none; margin-top: 15px; padding: 15px; background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px;">
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: #92400E; font-weight: bold;">✅ Publicado e Protegido! Envie este link para clientes:</p>
+                <input type="text" id="shareableLink" readonly style="width: 100%; background: #FFFBEB; color: #92400E; border: 1px dashed #F59E0B; border-radius: 4px; padding: 10px; font-family: monospace; box-sizing: border-box;">
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button id="copyLinkBtn" class="btn-primary" style="margin: 0; flex: 1; padding: 10px;">Copiar Link</button>
+                    <button id="openLinkBtn" class="btn-success" style="margin: 0; flex: 1; padding: 10px;">Abrir no Navegador</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="viewerMode" class="card" style="display: none;">
+            <div class="card-header" style="align-items: flex-start;">
+                <div>
+                    <h3 id="viewerTitle" style="margin-bottom: 5px;">Relatório Descoberto</h3>
+                    <p id="viewerAuthor" class="author" style="margin-top: 0;">Por: Autor Desconhecido</p>
+                </div>
+                <span id="viewerBadge" class="badge">Protegido por x402</span>
+            </div>
+            
+            <div id="ownershipNotice" style="display: none; background: #ECFDF5; border: 1px solid #10B981; color: #065F46; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 15px;">
+                👋 Olá Criador! Como você é o dono deste relatório, o acesso está liberado gratuitamente.
+            </div>
+
+            <div id="secretContent" class="blurred-content">Conteúdo restrito. Pague para desbloquear e ler a análise técnica completa feita pelo especialista.</div>
+
+            <div id="viewerActions">
+                <button id="payBtn" class="btn-action">Pagar 0.01 MON para Desbloquear</button>
+                <button id="demoUnlockBtn" class="btn-primary" style="margin-top: 10px;">Modo Demo: Simular Desbloqueio</button>
+                <button id="evaluateBtn" class="btn-success" style="display: none;">Avaliar Qualidade e Ganhar +0.002 MON</button>
+            </div>
+        </div>
+
+        <div class="metrics-panel">
+            <h4>⚡ Monad Performance Benchmark</h4>
+            <div class="metrics-grid">
+                <div class="metric-box eth-box">
+                    <span class="metric-title">Tempo Ethereum (Média)</span>
+                    <span class="metric-value eth-time">12.000 ms</span>
+                </div>
+                <div class="metric-box monad-box">
+                    <span class="metric-title">Tempo Real Monad</span>
+                    <span id="monadTime" class="metric-value">-- ms</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-title">Gás / Recompensa</span>
+                    <span id="gasCost" class="metric-value metric-green">-- MON</span>
+                </div>
+            </div>
+            <div class="metrics-grid secondary-grid">
+                <div class="metric-box">
+                    <span class="metric-title">Pagamentos Processados</span>
+                    <span id="paymentsProcessed" class="metric-value">0</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-title">Status do Protocolo</span>
+                    <span id="protocolStatus" class="metric-value small-metric">HTTP x402 Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
