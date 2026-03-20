@@ -1,4 +1,4 @@
-[No momento atual quando eu crio um conteudo ele n mostra ese conteudo na tela do feed. Também ele cria um link localhost para o usuário acessaro conteudo porém eu vou upar na vercel como mostra no link a seguir capybara-fi.vercel.app. então preciso q esse link interaja dessa forma. Também preciso de alguma forma permitir que quando a pessoa cria o conteudo ela consiga abrir ele normalmente sem precisar liberar o conteudo pagando pois a pessoa é o dono. logo preciso de alguma coisa que guarde qual usuário fez o que.](https://capybara-fi.vercel.app/)
+(https://capybara-fi.vercel.app/)
 
 
 http://localhost:5500/?post=post_1773610452938_igmfaf
