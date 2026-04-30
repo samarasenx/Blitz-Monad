@@ -58,5 +58,4 @@ Por ser um MVP focado no frontend e interações Web3 client-side, a execução 
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/SeuUsuario/capybara-fi.git](https://github.com/SeuUsuario/capybara-fi.git)
-   
+   git clone [https://github.com/samarasenx/Blitz-Monad.git](https://github.com/samarasenx/Blitz-Monad.git)
